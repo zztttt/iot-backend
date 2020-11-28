@@ -1,4 +1,5 @@
 HELP.md
+upload-dir/
 .mvn/
 target/
 !.mvn/wrapper/maven-wrapper.jar
