@@ -35,10 +35,21 @@ public class DataController {
         }
     }
 
-    @GetMapping("/controlMotor")
-    public JSONObject controlMotor() {
+    @GetMapping("/openMotor")
+    public JSONObject openMotor() {
         try {
-            JSONObject ret = callScript(globalVarConfig.motorControlScriptPath);
+            JSONObject ret = callScript(globalVarConfig.openMotorScriptPath);
+            return ret;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @GetMapping("/closeMotor")
+    public JSONObject closeMotor() {
+        try {
+            JSONObject ret = callScript(globalVarConfig.closeMotorScriptPath);
             return ret;
         }catch (Exception e){
             e.printStackTrace();
@@ -78,12 +89,15 @@ public class DataController {
             }
             p.waitFor();
             bufferedReader.close();
-        }else if(scriptPath.equals("./src/main/resources/python/control.py")){
+        }else if(scriptPath.equals("./src/main/resources/python/openMotor.py")){
+            long result = p.waitFor();
+            log.info("Process exit value:" + result);
+            ret.put("response", result);
+        }else if(scriptPath.equals("./src/main/resources/python/closeMotor.py")) {
             long result = p.waitFor();
             log.info("Process exit value:" + result);
             ret.put("response", result);
         }
-
         return ret;
     }
 }

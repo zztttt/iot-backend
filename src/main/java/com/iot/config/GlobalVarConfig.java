@@ -8,6 +8,9 @@ public class GlobalVarConfig {
     @Value("${getDataScriptPath}")
     public String getDataScriptPath;
 
-    @Value("${motorControlScriptPath}")
-    public String motorControlScriptPath;
+    @Value("${openMotorScriptPath}")
+    public String openMotorScriptPath;
+
+    @Value("${closeMotorScriptPath}")
+    public String closeMotorScriptPath;
 }
