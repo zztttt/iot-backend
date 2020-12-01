@@ -5,6 +5,9 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class GlobalVar {
-    @Value("${scriptPath}")
-    public String scriptPath;
+    @Value("${getDataScriptPath}")
+    public String getDataScriptPath;
+
+    @Value("${motorControlScriptPath}")
+    public String motorControlScriptPath;
 }
