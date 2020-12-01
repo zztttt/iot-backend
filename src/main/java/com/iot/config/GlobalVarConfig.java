@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class GlobalVar {
+public class GlobalVarConfig {
     @Value("${getDataScriptPath}")
     public String getDataScriptPath;
 

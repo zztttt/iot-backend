@@ -1,18 +1,14 @@
 package com.iot.controller;
 
-import com.iot.entity.Temperature;
-import com.iot.config.GlobalVar;
+import com.iot.config.GlobalVarConfig;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +18,7 @@ import com.alibaba.fastjson.*;
 @RestController
 public class DataController {
     @Autowired
-    GlobalVar globalVar;
+    GlobalVarConfig globalVarConfig;
 
     private final AtomicLong temperatureCounter = new AtomicLong();
 
@@ -30,7 +26,7 @@ public class DataController {
     public JSONObject getTemperature() {
         long cur  = System.currentTimeMillis();
         try {
-            JSONObject ret = callScript(globalVar.getDataScriptPath);
+            JSONObject ret = callScript(globalVarConfig.getDataScriptPath);
             //log.info("success");
             return ret;
         }catch (Exception e){
@@ -42,7 +38,7 @@ public class DataController {
     @GetMapping("/controlMotor")
     public JSONObject controlMotor() {
         try {
-            JSONObject ret = callScript(globalVar.motorControlScriptPath);
+            JSONObject ret = callScript(globalVarConfig.motorControlScriptPath);
             return ret;
         }catch (Exception e){
             e.printStackTrace();
